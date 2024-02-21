@@ -46,22 +46,46 @@ class KeyLists {
         val Dash = CharPair("-", "_")
         val Comma = CharPair(",", ".")
         val At = CharPair("@", "~")
+        val Colons = CharPair(";",":")
         val Space = LockedPair(
                 Invisible(" ", "' '"),
                 SpecialKey(KeyEvent.KEYCODE_TAB, "↦")
         )
 
+        //Arrows
+
+        val ArrowUp = oneSpecialKey(KeyEvent.KEYCODE_DPAD_UP,"↑")
+        val ArrowDown = oneSpecialKey(KeyEvent.KEYCODE_DPAD_DOWN,"↓")
+        val ArrowLeft = oneSpecialKey(KeyEvent.KEYCODE_DPAD_LEFT,"←")
+        val ArrowRight = oneSpecialKey(KeyEvent.KEYCODE_DPAD_RIGHT,"→")
+        val ArrowCenter = oneSpecialKey(KeyEvent.KEYCODE_DPAD_CENTER,"⊙")
+
+        val ArrowPad :Array<out KeyPair> = arrayOf(ArrowCenter, ArrowUp, ArrowRight,ArrowDown, ArrowLeft)
+
+
+        //Links Go Page
+        val GoSym = goKey("symbol","_S")
+        val GoHome = goKey("lower","EN")
+
+
+
+
         val Shift = LockedPair(
-                OneKey(KeyMode.SET_SHIFT, "⇧", 0),
-                OneKey(KeyMode.SET_VERY_SHIFT, "⇧", 0)
+                oneModeKey(KeyMode.SET_SHIFT, "⇧"),
+                oneModeKey(KeyMode.SET_VERY_SHIFT, "⇧")
+        )
+
+        val BackSpace = LockedPair(
+                oneModeKey(KeyMode.BACKSPACE, "↼"),
+                oneModeKey(KeyMode.BACKSPACE_MANY, "↼")
         )
 
         val Delete = LockedPair(
-                OneKey(KeyMode.DELETE, "↼", 0),
-                OneKey(KeyMode.DELETE_MANY, "↼", 0)
+            oneModeKey(KeyMode.DELETE, "↼"),
+            oneModeKey(KeyMode.DELETE_MANY, "↼")
         )
 
-        val Enter = OneKey(KeyMode.KEY, "↲", KeyEvent.KEYCODE_ENTER)
+        val Enter = oneSpecialKey(  KeyEvent.KEYCODE_ENTER,"↲")
 
         val Empty = CapLetter("")
 
@@ -73,9 +97,9 @@ class KeyLists {
         val APad = arrayOf(A, V, X, Y, B)
         val TPad = arrayOf(T, F, J, H, K)
         val BPad = arrayOf(S, P, D, Q, G)
-        val SpacePad = arrayOf(Space, Z, Comma, Space, At)
-        val EnterPad = arrayOf(Empty, Dash, Empty, Enter, Delete)
-        val GoPad = arrayOf(Empty, Shift, Empty, Empty, Empty)
+        val SpacePad = arrayOf(Space, Z, Comma, Colons, At)
+        val EnterPad = arrayOf(Empty, Dash, Delete, Enter, BackSpace)
+        val GoPad = arrayOf(GoHome, Shift, GoSym, Empty, Empty)
 
         @JvmStatic
         val lower_portrait = arrayOf(
@@ -88,13 +112,20 @@ class KeyLists {
                 ZeroPad, FivePad, RPad, TPad, APad, SpacePad, BPad, EPad, EnterPad, GoPad
         )
 
+        @JvmStatic
+        val symbol_portrait = arrayOf(
+            ArrowPad,SpacePad,GoPad
+        )
+
+
+
 
 
         fun pageByName(name: String,landscape:Boolean): Array<Array<out KeyPair>> {
-            if (name == "lower") return if (landscape) lower_landscape else lower_portrait
-
+            if (name == "lower") return if (landscape) lower_landscape else lower_portrait;
+            if (name == "symbol") return symbol_portrait;
             //TODO add more classes and items
-            return if (landscape) lower_landscape else lower_portrait
+            return if (landscape) lower_landscape else lower_portrait;
 
         }
 

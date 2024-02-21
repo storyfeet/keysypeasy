@@ -9,9 +9,9 @@ fun isUpper(ss: Int, cap:Boolean):Boolean{
     return ( ss > 0) != cap;
 }
 
-class OneKey (val mode_: KeyMode, val s:String, val key_ :Int) : KeyPair, KeyResult {
+class OneKey (val mode_: KeyMode, val s:String, val prev:String, val key_ :Int) : KeyPair, KeyResult {
     override fun preview(ss: Int): String {
-        return this.s;
+        return this.prev;
     }
 
     override fun selectKey(ss: Int, cap: Boolean): OneKey {
@@ -31,8 +31,20 @@ class OneKey (val mode_: KeyMode, val s:String, val key_ :Int) : KeyPair, KeyRes
     }
 
     override fun getPreview(): String {
-        return this.s;
+        return this.prev;
     }
+}
+
+fun oneSpecialKey(kc:Int,prev:String):OneKey{
+    return OneKey(KeyMode.KEY,"",prev,kc)
+}
+
+fun oneModeKey(mode:KeyMode, prev:String):OneKey{
+   return OneKey(mode,"",prev,0)
+}
+
+fun goKey(target:String,prev:String):OneKey{
+    return OneKey(KeyMode.SET_PAGE,target,prev,0 )
 }
 
 

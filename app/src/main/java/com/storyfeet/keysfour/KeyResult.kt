@@ -3,6 +3,8 @@ package com.storyfeet.keysfour
 enum class KeyMode{
         STRING,
         KEY,
+        BACKSPACE,
+        BACKSPACE_MANY,
         DELETE,
         DELETE_MANY,
 
@@ -57,6 +59,7 @@ class OneLetter(private val letter:String): KeyResult {
         }
 
 }
+
 
 class SpecialKey(private val keycode: Int, private val prev:String): KeyResult {
         override fun getMode(): KeyMode {

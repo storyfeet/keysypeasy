@@ -204,13 +204,7 @@ public class KeyPad extends View implements View.OnTouchListener {
         if (key == null) return;
 
         switch (key.getMode()){
-            case KEY:
-            case ACCENT:
-            case DELETE:
-            case DELETE_MANY:
-            case STRING:
-                this.kpListener.onSlideKey(key);
-                break;
+
             case SET_SHIFT:
                 this.shiftState = (this.shiftState + 1) % 3;
                 Log.d("KFMatt","Settging shift to : "+shiftState);
@@ -225,6 +219,10 @@ public class KeyPad extends View implements View.OnTouchListener {
                 String s = key.getStr();
                 this.keys = KeyLists.Companion.pageByName(s,isLandscape);
                 this.kpListener.saveKPData(new KPData(s));
+                invalidate();
+                break;
+            default:
+                this.kpListener.onSlideKey(key);
                 break;
         }
     }
@@ -251,9 +249,9 @@ public class KeyPad extends View implements View.OnTouchListener {
     }
 
     KeyPair getKey(int n, int angle){
-        if (n > keys.length) return null;
+        if (n >= keys.length) return null;
 
-        if (angle > keys[n].length) return null;
+        if (angle >= keys[n].length) return null;
 
         return keys[n][angle];
     }

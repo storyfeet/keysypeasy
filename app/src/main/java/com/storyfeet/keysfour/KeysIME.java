@@ -62,10 +62,14 @@ public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener
 
                 break;
             case DELETE:
-                ic.deleteSurroundingText(1, 0);
+                ic.deleteSurroundingText(0,1);
                 break;
             case DELETE_MANY:
-                //TODO make do words or something
+                ic.deleteSurroundingText(0,5);
+            case BACKSPACE:
+                ic.deleteSurroundingText(1, 0);
+                break;
+            case BACKSPACE_MANY:
                 ic.deleteSurroundingText(5, 0);
                 break;
 
