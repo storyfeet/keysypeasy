@@ -38,13 +38,16 @@ public class KeyPad extends View implements View.OnTouchListener {
 
     private int shiftState ;
 
-    private final Paint backPaint;
+    private ColorSet colorSet;
+
     private final Paint rectPaint;
 
 
 
     private final Paint txPaint;
     private final Paint txEdgePaint;
+
+
     private int chosenHeight;
     private int chosenWidth;
     private int chosenSquare = 0;
@@ -61,26 +64,25 @@ public class KeyPad extends View implements View.OnTouchListener {
     private boolean isLandscape;
     public KeyPad(Context context) {
         super(context);
+        this.colorSet = new ColorSet(context);
         Log.d("MATT", "new Keypad");
-        Paint bp = new Paint();
-        bp.setColor(getResources().getColor(color.teal_200));
-        backPaint = bp;
 
-        bp = new Paint();
+
+        Paint bp = new Paint();
         bp.setColor(getResources().getColor(color.teal_700));
         bp.setStyle(Paint.Style.STROKE);
         bp.setStrokeWidth(4.0f);
         rectPaint = bp;
 
         bp = new Paint();
-        bp.setColor(getResources().getColor(color.black));
+        bp.setColor(getResources().getColor(color.tx_main));
         bp.setTextSize(20);
         bp.setTextAlign(Paint.Align.CENTER);
         txPaint = bp;
 
         bp = new Paint();
         bp.setTextAlign(Paint.Align.CENTER);
-        bp.setColor(getResources().getColor(color.dark_gray));
+        bp.setColor(getResources().getColor(color.tx_second));
         bp.setTextSize(15);
         txEdgePaint = bp;
 
@@ -121,7 +123,7 @@ public class KeyPad extends View implements View.OnTouchListener {
 
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawRect(0,0,chosenWidth,chosenHeight,backPaint);
+        canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getBackground(shiftState));
 
         int mod = isLandscape ? 10 : 5;
         int rw = isLandscape ? chosenWidth / 10 : chosenWidth / 5;

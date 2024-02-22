@@ -9,4 +9,9 @@
     <color name="dark_gray">#FFBBBBBB</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_shift_none">#FF006633</color>
+    <color name="bg_shift_on">#FF005555</color>
+    <color name="bg_shift_lock">#FF003366</color>
+    <color name="tx_main">#FFcccc00</color>
+    <color name="tx_second">#FFaaaaaa</color>
 </resources>
