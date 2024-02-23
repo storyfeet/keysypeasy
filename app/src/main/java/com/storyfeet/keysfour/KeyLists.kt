@@ -34,7 +34,7 @@ class KeyLists {
 
         val _0 = CharPair("0", "&")
         val _1 = CharPair("1", "!")
-        val _2 = CharPair("2", "\"")
+        val _2 = CharPair("2", "~")
         val _3 = CharPair("3", "£")
         val _4 = CharPair("4", "$")
         val _5 = CharPair("5", "%")
@@ -45,12 +45,13 @@ class KeyLists {
 
         val Dash = CharPair("-", "_")
         val Comma = CharPair(",", ".")
-        val At = CharPair("@", "~")
+        val At = CharPair("@", "?")
         val Colons = CharPair(";",":")
         val Space = LockedPair(
                 Invisible(" ", "' '"),
                 SpecialKey(KeyEvent.KEYCODE_TAB, "↦")
         )
+        val Quotes = CharPair("'","\"",)
 
         //Arrows
 
@@ -98,7 +99,7 @@ class KeyLists {
         val TPad = arrayOf(T, F, J, H, K)
         val BPad = arrayOf(S, P, D, Q, G)
         val SpacePad = arrayOf(Space, Z, Comma, Colons, At)
-        val EnterPad = arrayOf(Empty, Dash, Delete, Enter, BackSpace)
+        val EnterPad = arrayOf(Quotes, Dash, Delete, Enter, BackSpace)
         val GoPad = arrayOf(GoHome, Shift, GoSym, Empty, Empty)
 
         @JvmStatic

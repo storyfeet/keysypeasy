@@ -38,15 +38,7 @@ public class KeyPad extends View implements View.OnTouchListener {
 
     private int shiftState ;
 
-    private ColorSet colorSet;
-
-    private final Paint rectPaint;
-
-
-
-    private final Paint txPaint;
-    private final Paint txEdgePaint;
-
+    private final ColorSet colorSet;
 
     private int chosenHeight;
     private int chosenWidth;
@@ -67,24 +59,6 @@ public class KeyPad extends View implements View.OnTouchListener {
         this.colorSet = new ColorSet(context);
         Log.d("MATT", "new Keypad");
 
-
-        Paint bp = new Paint();
-        bp.setColor(getResources().getColor(color.teal_700));
-        bp.setStyle(Paint.Style.STROKE);
-        bp.setStrokeWidth(4.0f);
-        rectPaint = bp;
-
-        bp = new Paint();
-        bp.setColor(getResources().getColor(color.tx_main));
-        bp.setTextSize(20);
-        bp.setTextAlign(Paint.Align.CENTER);
-        txPaint = bp;
-
-        bp = new Paint();
-        bp.setTextAlign(Paint.Align.CENTER);
-        bp.setColor(getResources().getColor(color.tx_second));
-        bp.setTextSize(15);
-        txEdgePaint = bp;
 
         chosenHeight = 2;
         chosenWidth = 2;
@@ -123,24 +97,26 @@ public class KeyPad extends View implements View.OnTouchListener {
 
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getBackground(shiftState));
+        canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getPBackground(shiftState));
 
         int mod = isLandscape ? 10 : 5;
         int rw = isLandscape ? chosenWidth / 10 : chosenWidth / 5;
         int rh = isLandscape ? chosenHeight  : chosenHeight / 2;
 
+
         for (int i = 0; i < 10; i++){
             int x = rw * (i % mod) ;
             int y = rh * (i / mod);
-            canvas.drawRect(x, y,rw,rh,rectPaint );
+            canvas.drawRect(x, y,rw,rh,colorSet.pRect);
 
             //Log.d("MATT", "rect : " + x + "," + y + "," + rw + "," + rh);
             for (int j = 0; j < 5; j ++) {
                 KeyPair key = getKey(i, j);
                 if (key != null) {
                     String t = key.preview(shiftState);
-                    Paint pt = txPaint;
-                    int tSize = j == 0 ? rw / 3 : rw / 4;
+                    float tSize = j == 0 ? (float) rw / (t.length() + 2) : (float) rw / (t.length()+3);
+
+                    Paint pt = colorSet.getPText(j,tSize);
                     pt.setTextSize(tSize);
 
                     canvas.drawText(t, x + 0.5f * rw + rotX(j, rw / 3), y + 0.6f * rh + rotY(j, rh / 3), pt);
