@@ -66,7 +66,7 @@ class KeyLists {
 
         //Links Go Page
         val GoSym = goKey("symbol","_S")
-        val GoHome = goKey("lower","EN")
+        val GoHome = goKey("english","EN")
 
 
 
@@ -103,30 +103,67 @@ class KeyLists {
         val GoPad = arrayOf(GoHome, Shift, GoSym, Empty, Empty)
 
         @JvmStatic
-        val lower_portrait = arrayOf(
+        var english_portrait = arrayOf(
                 ZeroPad, RPad, APad, EPad, EnterPad,
                 FivePad, TPad, SpacePad, BPad, GoPad
         )
-
         @JvmStatic
-        val lower_landscape = arrayOf(
-                ZeroPad, FivePad, RPad, TPad, APad, SpacePad, BPad, EPad, EnterPad, GoPad
+        val english_landscape = arrayOf(
+            ZeroPad, FivePad, RPad, TPad, APad, SpacePad, BPad, EPad, EnterPad, GoPad
         )
+
+        val ParenOne = arrayOf(
+            CharPair("#","~"),
+            CharPair("?","¿"),
+            CharPair(")",">"),
+            CharPair("!","¡"),
+            CharPair("(","<")
+        )
+
+
+        val ParenTwo = arrayOf(
+            CharPair("%","`"),
+            CharPair("•","☰"),
+            CharPair("]","}"),
+            CharPair("|","¬"),
+            CharPair("[","{"),
+        )
+
+        val MathOne = arrayOf(
+            CharPair("=","≠"),
+            CharPair("+","_"),
+            CharPair("/","\\"),
+            CharPair("*","^"),
+            CharPair("-","—"),
+
+        )
+
+        val MoneyOne = arrayOf(
+            CharPair("$","₹",),
+            CharPair("£","₽"),
+            CharPair("€","₩"),
+            CharPair("₿","₭"),
+            CharPair("¥","₡"),
+        )
+
 
         @JvmStatic
         val symbol_portrait = arrayOf(
-            ArrowPad,SpacePad,GoPad
+            ZeroPad,ParenOne,ParenTwo,MathOne,EnterPad,
+            FivePad,ArrowPad,SpacePad,MoneyOne,GoPad
         )
 
+        val symbol_landscape = arrayOf(
+            ZeroPad,FivePad,ParenOne, ParenTwo,ArrowPad, MathOne,SpacePad,MoneyOne, EnterPad,GoPad,
+        )
 
 
 
 
         fun pageByName(name: String,landscape:Boolean): Array<Array<out KeyPair>> {
-            if (name == "lower") return if (landscape) lower_landscape else lower_portrait;
             if (name == "symbol") return symbol_portrait;
             //TODO add more classes and items
-            return if (landscape) lower_landscape else lower_portrait;
+            return if (landscape) english_landscape else english_portrait;
 
         }
 

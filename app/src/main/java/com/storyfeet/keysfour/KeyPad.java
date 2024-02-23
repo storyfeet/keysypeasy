@@ -49,7 +49,7 @@ public class KeyPad extends View implements View.OnTouchListener {
     //private String timerString = null;
 
     private TouchTracker touchTracker = null;
-    private KeyPair[][] keys = KeyLists.getLower_portrait();
+    private KeyPair[][] keys = KeyLists.getEnglish_portrait();
 
     private KeyPadListener kpListener = null;
 
