@@ -9,6 +9,8 @@ fun isUpper(ss: Int, cap:Boolean):Boolean{
     return ( ss > 0) != cap;
 }
 
+
+
 class OneKey (val mode_: KeyMode, val s:String, val prev:String, val key_ :Int) : KeyPair, KeyResult {
     override fun preview(ss: Int): String {
         return this.prev;
@@ -45,6 +47,14 @@ fun oneModeKey(mode:KeyMode, prev:String):OneKey{
 
 fun goKey(target:String,prev:String):OneKey{
     return OneKey(KeyMode.SET_PAGE,target,prev,0 )
+}
+
+fun accentPair(l:String,u:String):Twofer{
+    return Twofer(
+        OneKey(KeyMode.ACCENT,l,l,0),
+        OneKey(KeyMode.ACCENT,u,u,0),
+    )
+
 }
 
 

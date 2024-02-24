@@ -59,7 +59,12 @@ public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,kc));
                 break;
             case ACCENT://TODO
-
+                String s = (String) ic.getTextBeforeCursor(1,0);
+                if  (s == null) return;
+                if (s.length()== 0) return;
+                String res = Accents.Companion.lazyCaseAccent(s.charAt(0),key.getStr().charAt(0));
+                ic.deleteSurroundingText(1,0);
+                ic.commitText(res,1);
                 break;
             case DELETE:
                 ic.deleteSurroundingText(0,1);

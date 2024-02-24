@@ -146,22 +146,32 @@ class KeyLists {
             CharPair("¥","₡"),
         )
 
+        val AccentPad = arrayOf(
+            accentPair("ã","ä"),
+            accentPair("à","à"),
+            accentPair("á","á"),
+            accentPair("ç","ç"),
+            accentPair("â","â"),
+
+        )
+
+        val EmptyPad:Array<out KeyPair> = arrayOf()
 
         @JvmStatic
         val symbol_portrait = arrayOf(
-            ZeroPad,ParenOne,ParenTwo,MathOne,EnterPad,
-            FivePad,ArrowPad,SpacePad,MoneyOne,GoPad
+            AccentPad,ParenOne,ParenTwo,MathOne,EnterPad,
+            EmptyPad,ArrowPad,SpacePad,MoneyOne,GoPad
         )
 
         val symbol_landscape = arrayOf(
-            ZeroPad,FivePad,ParenOne, ParenTwo,ArrowPad, MathOne,SpacePad,MoneyOne, EnterPad,GoPad,
+            AccentPad, EmptyPad,ParenOne, ParenTwo,ArrowPad, MathOne,SpacePad,MoneyOne, EnterPad,GoPad,
         )
 
 
 
 
         fun pageByName(name: String,landscape:Boolean): Array<Array<out KeyPair>> {
-            if (name == "symbol") return symbol_portrait;
+            if (name == "symbol") return if (landscape) symbol_landscape else symbol_portrait;
             //TODO add more classes and items
             return if (landscape) english_landscape else english_portrait;
 
