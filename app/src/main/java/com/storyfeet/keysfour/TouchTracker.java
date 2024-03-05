@@ -2,15 +2,18 @@ package com.storyfeet.keysfour;
 
 public class TouchTracker {
 
-    private final float minDist, startX ,startY;
-    private int currHit;
+    private final float minDist;
+    private float currX ,currY;
+    private int lastHit;
+
     public final static int DIR_NONE = 0;
     public final static int DIR_UP = 1;
     public final static int DIR_RIGHT = 2;
     public final static int DIR_DOWN = 3;
     public final static int DIR_LEFT = 4;
 
-    public static final int HIT_NONE = 5;
+
+    public static final int MIN_MOVES_IN_DIR = 2;
 
 
     public static class DirCap{
@@ -29,36 +32,61 @@ public class TouchTracker {
     private int numHits = 0;
     public TouchTracker(float minDist, float x,float y) {
         this.minDist = minDist;
-        this.startX = x;
-        this.startY = y;
-        this.currHit = HIT_NONE;
+        this.currX = x;
+        this.currY = y;
         this.numHits = 0;
         this.hitDirections = 0;
+
+        this.lastHit = DIR_NONE;
     }
 
     public void move(float x,float y){
-        int newDir = getHit(x,y);
-        if (newDir == currHit) return;
-        if (numHits > 5) return;
-        currHit = newDir;
+        int newDir = calcDir(currX,currY,x,y);
+        float moved = calcDist(currX,currY,x,y);
 
-        int n = currHit << ((numHits) * 3);
-        this.hitDirections |= n;
+        if (newDir == lastHit) {
+            currX = x;
+            currY = y;
+        }
 
-        numHits ++;
+        if (moved > minDist){
+            hit(newDir);
+        }
+
     }
 
-    int getHit(float x, float y){
-
-        float abX = Math.abs(x -startX);
-        float abY = Math.abs(y - startY);
-        if (abX < minDist && abY < minDist) return HIT_NONE;
-        if (abX > abY) {
-            if (x > startX) return DIR_RIGHT;
+    int calcDir(float ox,float oy, float nx, float ny){
+        float abX = Math.abs(nx -ox);
+        float abY = Math.abs(ny - oy);
+        if (abX > abY){
+            if (nx > ox) return DIR_RIGHT;
             return DIR_LEFT;
         }
-        if (y > startY) return DIR_DOWN;
+        if (ny > oy) return DIR_DOWN;
         return DIR_UP;
+    }
+
+    float calcDist(float ox,float oy, float nx, float ny){
+        float abX = Math.abs(nx -ox);
+        float abY = Math.abs(ny - oy);
+        return Math.max(abX,abY);
+
+    }
+
+    public void hit(int hitDir){
+        if (numHits > 5) return;
+
+        if (hitDir == lastHit){
+            return;
+        }
+        lastHit = hitDir;
+
+        int n = hitDir << ((numHits) * 3);
+        this.hitDirections |= n;
+
+
+        numHits ++;
+
     }
 
     public DirCap getDirCap(){
