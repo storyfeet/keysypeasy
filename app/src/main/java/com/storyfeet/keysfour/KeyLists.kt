@@ -44,7 +44,7 @@ class KeyLists {
         val _9 = CharPair("9", "(")
 
         val Dash = CharPair("-", "_")
-        val Comma = CharPair(",", ".")
+        val FStop = CharPair(".", ",")
         val At = CharPair("@", "?")
         val Colons = CharPair(";",":")
         val Space = LockedPair(
@@ -93,23 +93,23 @@ class KeyLists {
         //Squares
         val ZeroPad = arrayOf(_0, _1, _2, _3, _4)
         val FivePad = arrayOf(_5, _6, _7, _8, _9)
-        val RPad = arrayOf(R, L, M, C, N)
-        val EPad = arrayOf(E, W, I, O, U)
-        val APad = arrayOf(A, V, X, Y, B)
-        val TPad = arrayOf(T, F, J, H, K)
-        val BPad = arrayOf(S, P, D, Q, G)
-        val SpacePad = arrayOf(Space, Z, Comma, Colons, At)
+        val RPad = arrayOf(R, G, Q, D, U)
+        val EPad = arrayOf(E, Y, O, C, B)
+        val APad = arrayOf(A, N, FStop, F, V)
+        val TPad = arrayOf(T, X, H, J, At)
+        val SPad = arrayOf(S, K, M, P, Colons)
+        val SpacePad = arrayOf(Space,L,I, Z,W )
         val EnterPad = arrayOf(Quotes, Dash, Delete, Enter, BackSpace)
         val GoPad = arrayOf(GoHome, Shift, GoSym, Empty, Empty)
 
         @JvmStatic
         var english_portrait = arrayOf(
-                ZeroPad, RPad, APad, EPad, EnterPad,
-                FivePad, TPad, SpacePad, BPad, GoPad
+                ZeroPad, TPad, EPad, RPad, EnterPad,
+                FivePad, SPad, SpacePad, APad, GoPad
         )
         @JvmStatic
         val english_landscape = arrayOf(
-            ZeroPad, FivePad, RPad, TPad, APad, SpacePad, BPad, EPad, EnterPad, GoPad
+            ZeroPad, FivePad, SPad, TPad, EPad, SpacePad, APad, RPad, EnterPad, GoPad
         )
 
         val ParenOne = arrayOf(
