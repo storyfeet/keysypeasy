@@ -61,6 +61,10 @@ class KeyLists {
         val ArrowRight = oneSpecialKey(KeyEvent.KEYCODE_DPAD_RIGHT,"→")
         val ArrowCenter = oneSpecialKey(KeyEvent.KEYCODE_DPAD_CENTER,"⊙")
 
+        val LeftRight = LockedPair(ArrowLeft,ArrowRight)
+        val DownUp = LockedPair(ArrowDown,ArrowUp)
+
+
         val ArrowPad :Array<out KeyPair> = arrayOf(ArrowCenter, ArrowUp, ArrowRight,ArrowDown, ArrowLeft)
 
 
@@ -98,7 +102,7 @@ class KeyLists {
         val APad = arrayOf(A, N, FStop, F, V)
         val TPad = arrayOf(T, X, H, J, At)
         val SPad = arrayOf(S, K, M, P, Colons)
-        val SpacePad = arrayOf(Space,L,I, Z,W )
+        val SpacePad = arrayOf(Space,L,I, Z,W ,LeftRight, DownUp)
         val EnterPad = arrayOf(Quotes, Dash, Delete, Enter, BackSpace)
         val GoPad = arrayOf(GoHome, Shift, GoSym, Empty, Empty)
 

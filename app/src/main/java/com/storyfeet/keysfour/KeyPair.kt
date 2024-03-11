@@ -37,6 +37,8 @@ class OneKey (val mode_: KeyMode, val s:String, val prev:String, val key_ :Int) 
     }
 }
 
+
+
 fun oneSpecialKey(kc:Int,prev:String):OneKey{
     return OneKey(KeyMode.KEY,"",prev,kc)
 }

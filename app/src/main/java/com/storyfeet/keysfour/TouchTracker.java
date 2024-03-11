@@ -12,8 +12,10 @@ public class TouchTracker {
     public final static int DIR_DOWN = 3;
     public final static int DIR_LEFT = 4;
 
-
-    public static final int MIN_MOVES_IN_DIR = 2;
+    public final static int ROUND_UP = 5;
+    public final static int ROUND_RIGHT = 6;
+    public final static int ROUND_DOWN = 7;
+    public final static int ROUND_LEFT = 8;
 
 
     public static class DirCap{
@@ -90,11 +92,29 @@ public class TouchTracker {
     }
 
     public DirCap getDirCap(){
-        if (numHits > 5) return null;
-        if (numHits >= 3) return dc(DIR_NONE,true); //shortcur may fix later
         if (numHits == 0) return dc(DIR_NONE,false);
         if (numHits == 1) return dc(hitDirections ,false);
-        if (numHits == 2) return dc(hitDirections & 7, true);
+        if (numHits >= 4) return dc(DIR_NONE,true);
+        int hd = hitDirections & 63;
+
+        if (hd == (DIR_UP | (DIR_DOWN << 3))) return dc(DIR_UP,true);
+        if (hd == (DIR_DOWN | (DIR_UP << 3))) return dc(DIR_DOWN,true);
+        if (hd == (DIR_LEFT | (DIR_RIGHT << 3))) return dc(DIR_LEFT,true);
+        if (hd == (DIR_RIGHT | (DIR_LEFT << 3))) return dc(DIR_RIGHT,true);
+
+        // On 3 we gotta check directions
+        // UP RIGHT is TRUE, down left is false
+        if (hd == (DIR_LEFT | (DIR_UP << 3 ))) return dc(ROUND_LEFT,true);
+        if (hd == (DIR_LEFT | (DIR_DOWN << 3))) return dc(ROUND_LEFT,false);
+
+        if (hd == (DIR_RIGHT | (DIR_UP << 3 ))) return dc(ROUND_RIGHT,true);
+        if (hd == (DIR_RIGHT | (DIR_DOWN << 3))) return dc(ROUND_RIGHT,false);
+
+        if (hd == (DIR_UP | (DIR_RIGHT << 3 ))) return dc(ROUND_UP,true);
+        if (hd == (DIR_UP | (DIR_LEFT << 3))) return dc(ROUND_UP,false);
+
+        if (hd == (DIR_DOWN | (DIR_RIGHT << 3 ))) return dc(ROUND_DOWN,true);
+        if (hd == (DIR_DOWN | (DIR_LEFT << 3))) return dc(ROUND_DOWN,false);
         /*if (hitDirections == (DIR_LEFT | (HIT_NONE << 3))) return dc(DIR_LEFT,true);
         if (hitDirections == (DIR_RIGHT | (HIT_NONE << 3))) return dc(DIR_RIGHT,true);
         if (hitDirections == (DIR_DOWN | (HIT_NONE << 3))) return dc(DIR_DOWN,true);
