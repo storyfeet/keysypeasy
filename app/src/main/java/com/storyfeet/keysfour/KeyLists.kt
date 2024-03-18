@@ -90,6 +90,11 @@ class KeyLists {
             oneModeKey(KeyMode.DELETE_MANY, "↼")
         )
 
+        val CPPaste = LockedPair(
+            OneKey(KeyMode.PASTE,"","_V",KeyEvent.KEYCODE_V),
+            OneKey(KeyMode.COPY,"","_C",KeyEvent.KEYCODE_C),
+        )
+
         val Enter = oneSpecialKey(  KeyEvent.KEYCODE_ENTER,"↲")
 
         val Empty = CapLetter("")
@@ -99,7 +104,7 @@ class KeyLists {
         val FivePad = arrayOf(_5, _6, _7, _8, _9)
         val RPad = arrayOf(R, G, Q, D, U)
         val EPad = arrayOf(E, Y, O, C, B)
-        val APad = arrayOf(A, N, FStop, F, V)
+        val APad = arrayOf(A, N, FStop, F, V, Empty,Empty,Empty, CPPaste)
         val TPad = arrayOf(T, X, H, J, At)
         val SPad = arrayOf(S, K, M, P, Colons)
         val SpacePad = arrayOf(Space,L,I, Z,W ,LeftRight, DownUp)

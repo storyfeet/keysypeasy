@@ -1,4 +1,6 @@
 package com.storyfeet.keysfour;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.inputmethodservice.InputMethodService;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -81,6 +83,27 @@ public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener
             case STRING:
                 ic.commitText(key.getStr(), 1);
                 break;
+            case CTRL:
+                kc = key.getKey();
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_CTRL_LEFT));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,kc));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,kc));
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_CTRL_LEFT));
+            case COPY:
+                CharSequence cs = ic.getSelectedText(0);
+                if (cs == null) return;
+                ClipboardManager cm1 = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData cdata1 = ClipData.newPlainText("K4", cs.toString());
+                cm1.setPrimaryClip(cdata1);
+                break;
+            case PASTE:
+                ClipboardManager cm2 = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData cdata2 = cm2.getPrimaryClip();
+                if (cdata2 == null) return;
+                ic.commitText(cdata2.getItemAt(0).coerceToText(getBaseContext()),1);
+                break;
+
+
         }
 
     }

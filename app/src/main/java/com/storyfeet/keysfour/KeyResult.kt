@@ -7,6 +7,9 @@ enum class KeyMode{
         BACKSPACE_MANY,
         DELETE,
         DELETE_MANY,
+        CTRL,
+        COPY,
+        PASTE,
 
         ACCENT,
         SET_PAGE,
