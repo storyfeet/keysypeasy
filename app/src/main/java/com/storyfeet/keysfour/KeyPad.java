@@ -39,7 +39,8 @@ public class KeyPad extends View implements View.OnTouchListener {
     private int shiftState ;
 
     private final ColorSet colorSet;
-
+    private int numRows;
+    private int numCols;
     private int chosenHeight;
     private int chosenWidth;
     private int chosenSquare = 0;
@@ -62,6 +63,8 @@ public class KeyPad extends View implements View.OnTouchListener {
 
         chosenHeight = 2;
         chosenWidth = 2;
+        numRows = 2;
+        numCols = 5;
         int or = getResources().getConfiguration().orientation;
         isLandscape = (or ==Configuration.ORIENTATION_LANDSCAPE);
         shiftState = 0;
@@ -79,13 +82,15 @@ public class KeyPad extends View implements View.OnTouchListener {
         int or = getResources().getConfiguration().orientation;
         isLandscape = (or ==Configuration.ORIENTATION_LANDSCAPE);
 
+        numCols = isLandscape ? 10: 5;
+        numRows = 1 + (keys.length -1 )/numCols;
 
-
-        Log.d("MATT" , "on measure w =" + MeasureSpec.toString(wspec) + ", h = " + MeasureSpec.toString(hspec));
+        Log.d("Keysfive" , "on measure w =" + MeasureSpec.toString(wspec) + ", h = " + MeasureSpec.toString(hspec));
+        Log.d("keysfive", "measured num rows = " + Integer.toString(numRows) + ", cols = " + Integer.toString(numCols));
 
         chosenWidth = w;
 
-        chosenHeight = isLandscape ? w/10 : (2*w) /5;
+        chosenHeight =  (numRows * w)/numCols;
 
         setMeasuredDimension(chosenWidth,chosenHeight);
         Log.d("MATT" , "Chosen " + chosenWidth + "," + chosenHeight);
@@ -99,14 +104,13 @@ public class KeyPad extends View implements View.OnTouchListener {
     public void onDraw(Canvas canvas) {
         canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getPBackground(shiftState));
 
-        int mod = isLandscape ? 10 : 5;
-        int rw = isLandscape ? chosenWidth / 10 : chosenWidth / 5;
-        int rh = isLandscape ? chosenHeight  : chosenHeight / 2;
+        int rw = chosenWidth / numCols;
+        int rh = chosenHeight/ numRows;
 
 
-        for (int i = 0; i < 10; i++){
-            int x = rw * (i % mod) ;
-            int y = rh * (i / mod);
+        for (int i = 0; i < keys.length; i++){
+            int x = rw * (i % numCols) ;
+            int y = rh * (i / numCols);
             canvas.drawRect(x, y,rw,rh,colorSet.pRect);
 
             //Log.d("MATT", "rect : " + x + "," + y + "," + rw + "," + rh);
@@ -198,6 +202,7 @@ public class KeyPad extends View implements View.OnTouchListener {
                 this.keys = KeyLists.Companion.pageByName(s,isLandscape);
                 this.kpListener.saveKPData(new KPData(s));
                 invalidate();
+                requestLayout();
                 break;
             default:
                 this.kpListener.onSlideKey(key);
