@@ -105,7 +105,7 @@ public class KeyPad extends View implements View.OnTouchListener {
         canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getPBackground(shiftState));
 
         int rw = chosenWidth / numCols;
-        int rh = chosenHeight/ numRows;
+        int rh = chosenHeight / numRows;
 
 
         for (int i = 0; i < keys.length; i++){
@@ -189,7 +189,7 @@ public class KeyPad extends View implements View.OnTouchListener {
 
             case SET_SHIFT:
                 this.shiftState = (this.shiftState + 1) % 3;
-                Log.d("KFMatt","Settging shift to : "+shiftState);
+                Log.d("KFMatt","Setting shift to : "+shiftState);
 
                 invalidate();
                 break;
