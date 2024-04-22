@@ -104,3 +104,26 @@ class LockedPair (private val lower: KeyResult, private val upper: KeyResult) : 
     }
 
 }
+
+class LongKey (private val s:String) : KeyPair {
+    override fun preview(ss: Int): String {
+        if (ss > 0 ){
+            return s.uppercase();
+        }
+        return s;
+    }
+
+    override fun selectKey(ss: Int, cap: Boolean): KeyResult {
+        if (ss > 0) {
+            return OneLetter(s.uppercase());
+        }
+        if (! cap){
+            return OneLetter(s);
+        }
+        val s2 = s.lowercase()
+        val s3 = s2.replaceFirstChar { c -> c.uppercase() }
+
+        return OneLetter(s3)
+    }
+
+}

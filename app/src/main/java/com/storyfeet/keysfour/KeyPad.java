@@ -68,7 +68,7 @@ public class KeyPad extends View implements View.OnTouchListener {
         int or = getResources().getConfiguration().orientation;
         isLandscape = (or ==Configuration.ORIENTATION_LANDSCAPE);
         shiftState = 0;
-        keys = KeyLists.Companion.pageByName("lower",isLandscape);
+        keys = KeyLists.Companion.pageByName("tall",isLandscape);
 
 
         this.setOnTouchListener(this);
@@ -123,7 +123,7 @@ public class KeyPad extends View implements View.OnTouchListener {
                     Paint pt = colorSet.getPText(j,tSize);
                     pt.setTextSize(tSize);
 
-                    canvas.drawText(t, x + 0.5f * rw + rotX(j, rw / 3), y + 0.6f * rh + rotY(j, rh / 3), pt);
+                    canvas.drawText(t, x + 0.5f * rw + rotX(j, rw / 3), y + 0.5f * rh  + (tSize / 3)  + rotY(j, rh / 3), pt);
                 }
             }
         }
@@ -212,13 +212,9 @@ public class KeyPad extends View implements View.OnTouchListener {
 
 
     int getSquare(float dx, float dy){
-        if (isLandscape){
-            return (int) ((dx * 10) / chosenWidth);
-
-        }
-        int x = (int) ((dx * 5 )/chosenWidth);
-        int y = (int) (dy * 2) / chosenHeight;
-        return x + (5*y);
+        int x = (int) (dx * numCols) / chosenWidth;
+        int y = (int) (dy * numRows) / chosenHeight;
+        return x + (numCols*y);
     }
 
     void setKeyPadListener(KeyPadListener kpl) {

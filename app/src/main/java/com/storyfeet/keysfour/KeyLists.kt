@@ -32,6 +32,27 @@ class KeyLists {
         val Y = CapLetter("y")
         val Z = CapLetter("z")
 
+        val THA = LongKey("tha")
+        val HER = LongKey("her")
+        val TER = LongKey("ter")
+        val THE = LongKey("the")
+        val WAS = LongKey("was")
+        val AND = LongKey("and")
+        val NOT = LongKey("not")
+        val ENT = LongKey("ent")
+        val HAT = LongKey("hat")
+        val FOR = LongKey("for")
+        val ION = LongKey("ion")
+        val ING = LongKey("ing")
+        val YOU = LongKey("you")
+        val QU = LongKey("qu")
+
+        val D_COM = LongKey(".com")
+        val D_CO = LongKey(".co")
+        val D_UK = LongKey(".uk")
+        val D_ORG = LongKey(".org")
+        val D_GOV = LongKey(".gov")
+
         val _0 = CharPair("0", "&")
         val _1 = CharPair("1", "!")
         val _2 = CharPair("2", "~")
@@ -70,7 +91,10 @@ class KeyLists {
 
         //Links Go Page
         val GoSym = goKey("symbol","_S")
-        val GoHome = goKey("english","EN")
+
+        val GoHome = goKey("tall","EN")
+        val GoSmall = goKey("english", "SML")
+
 
 
 
@@ -109,10 +133,10 @@ class KeyLists {
         val SPad = arrayOf(S, K, M, P, Colons)
         val SpacePad = arrayOf(Space,L,I, Z,W ,LeftRight, DownUp)
         val EnterPad = arrayOf(Quotes, Dash, Delete, Enter, BackSpace)
-        val GoPad = arrayOf(GoHome, Shift, GoSym, Empty, Empty)
+        val GoPad = arrayOf(GoHome, Shift, GoSym, GoSmall, Empty)
 
         @JvmStatic
-        var english_portrait = arrayOf(
+        val english_portrait = arrayOf(
                 ZeroPad, TPad, EPad, RPad, EnterPad,
                 FivePad, SPad, SpacePad, APad, GoPad
         )
@@ -177,12 +201,30 @@ class KeyLists {
         )
 
 
+        val TallT = arrayOf(T,THA,W,Z,THE)
+        val TallH = arrayOf(H,HER,QU,Y,X)
+        val TallE = arrayOf(E,TER,WAS,R,V)
+        val TallA = arrayOf(A,P,L,F,AND)
+        val TallSpace = arrayOf(Space,At,FStop,Quotes, Colons)
+        val TallN = arrayOf(N,K,NOT,D,G)
+        val TallS = arrayOf(S,ENT,M,FOR,HAT)
+        val TallO = arrayOf(O,U,B,ION,Q)
+        val TallI = arrayOf(I,C,YOU,ING,J)
+        val TallCom = arrayOf(D_COM,D_CO,D_UK,D_ORG,D_GOV)
+
+
+        val EN_TALL_PORTRAIT = arrayOf(
+            AccentPad,TallT,TallH,TallE,TallCom,
+            ZeroPad,TallA,TallSpace,TallN, EnterPad,
+            FivePad,TallS,TallO,TallI,GoPad,
+        )
+
 
 
         fun pageByName(name: String,landscape:Boolean): Array<Array<out KeyPair>> {
             if (name == "symbol") return if (landscape) symbol_landscape else symbol_portrait;
-            //TODO add more classes and items
-            return if (landscape) english_landscape else english_portrait;
+            if (name == "english") return if (landscape) english_landscape else english_portrait;
+            return EN_TALL_PORTRAIT;
 
         }
 
