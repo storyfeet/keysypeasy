@@ -99,28 +99,52 @@ public class KeyPad extends View implements View.OnTouchListener {
     }
 
 
+    public boolean isSpecial(KeyPair kp) {
+        if (kp == null) return false;
+        KeyResult kres =  kp.selectKey(0,false);
+        KeyMode mode = kres.getMode();
+        if (mode == KeyMode.STRING) {
+            if (kres.getStr().equals(" ")){
+                return true;
+            }
+        }
+        if (mode == KeyMode.SET_PAGE ) return true;
+        if (mode == KeyMode.ACCENT ) return true;
+        return false;
+    }
 
     @Override
     public void onDraw(Canvas canvas) {
+        //canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getPBackground(shiftState));
         canvas.drawRect(0,0,chosenWidth,chosenHeight,colorSet.getPBackground(shiftState));
-
         int rw = chosenWidth / numCols;
         int rh = chosenHeight / numRows;
 
 
         for (int i = 0; i < keys.length; i++){
-            int x = rw * (i % numCols) ;
-            int y = rh * (i / numCols);
-            canvas.drawRect(x, y,rw,rh,colorSet.pRect);
+            int x = rw * (i % (numCols));
+            int y = rh * (i / (numCols) );
 
-            //Log.d("MATT", "rect : " + x + "," + y + "," + rw + "," + rh);
+
+            Log.d("RECT", "rect : " + x + ", " + y + ", " + rw + ", " + rh);
+            boolean special = isSpecial(getKey(i,0));
+            if (special) {
+                canvas.drawRect(x, y, x + rw, y + rh, colorSet.pSpace);
+            }
+            Paint pCenter = special? colorSet.pTxSpecMain: colorSet.pTxMain;
+            Paint pEdge = special? colorSet.pTxSpecSecond : colorSet.pTxSecond;
+
+            canvas.drawRect(x,y,x+rw,y+rh,colorSet.pRect);
+
+
             for (int j = 0; j < 5; j ++) {
                 KeyPair key = getKey(i, j);
                 if (key != null) {
                     String t = key.preview(shiftState);
+
                     float tSize = j == 0 ? (float) rw / (t.length() + 2) : (float) rw / (t.length()+3);
 
-                    Paint pt = colorSet.getPText(j,tSize);
+                    Paint pt = (j == 0)? pCenter : pEdge;
                     pt.setTextSize(tSize);
 
                     canvas.drawText(t, x + 0.5f * rw + rotX(j, rw / 3), y + 0.5f * rh  + (tSize / 3)  + rotY(j, rh / 3), pt);

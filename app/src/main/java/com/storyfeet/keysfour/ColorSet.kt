@@ -8,29 +8,38 @@ class ColorSet() {
     private var shiftNone:Int = 0
     private var shiftOn:Int = 0
     private var shiftLock:Int = 0
+    private var spaceBox:Int = 0;
     private lateinit var pShiftNone:Paint
     private lateinit var pShiftOn:Paint
     private lateinit var  pShiftLock:Paint
 
     private var txMain: Int = 0
     private var txSecond: Int = 0
-    private lateinit var pTxMain:Paint
-    private lateinit var pTxSecond:Paint
+    lateinit var pTxMain:Paint
+    lateinit var pTxSecond:Paint
+    lateinit var pTxSpecMain : Paint
+    lateinit var pTxSpecSecond: Paint
 
+    lateinit var pSpace:Paint
     lateinit var pRect:Paint
     
     constructor(ctx:Context) : this() {
         shiftNone = ContextCompat.getColor(ctx,R.color.bg_shift_none)
         shiftOn = ContextCompat.getColor(ctx,R.color.bg_shift_on)
         shiftLock = ContextCompat.getColor(ctx,R.color.bg_shift_lock)
+        spaceBox = ContextCompat.getColor(ctx,R.color.light_gray)
         pShiftOn = makeBackground(shiftOn)
         pShiftNone = makeBackground(shiftNone)
         pShiftLock = makeBackground(shiftLock)
+        pSpace = makeBackground(spaceBox)
 
         txMain = ContextCompat.getColor(ctx,R.color.tx_main)
         txSecond = ContextCompat.getColor(ctx,R.color.tx_second)
         pTxMain = makeText(txMain,Paint.Align.CENTER,20f)
         pTxSecond = makeText(txSecond,Paint.Align.CENTER,15f)
+        pTxSpecMain = makeText(ContextCompat.getColor(ctx,R.color.black),Paint.Align.CENTER,4f)
+        pTxSpecSecond = makeText(ContextCompat.getColor(ctx,R.color.dark_gray),Paint.Align.CENTER,4f)
+
 
         pRect = makeStroke(ContextCompat.getColor(ctx,R.color.teal_700),4f)
     }
