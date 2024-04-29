@@ -52,6 +52,8 @@ class KeyLists {
         val THOU = LongKey("thou")
         val NT = LongKey("n't")
         val WERE = LongKey("were")
+        val ANG = LongKey("ang")
+        val ITE = LongKey("ite")
         val IGHT = LongKey("ight")
         val YOURE = LongKey("you're")
 
@@ -72,15 +74,24 @@ class KeyLists {
         val _8 = CharPair("8", "*")
         val _9 = CharPair("9", "(")
 
+        val FIRST = CharPair("1st","0th")
+        val SECOND = CharPair("2nd","}")
+        val THIRD = CharPair("3rd","<")
+        val FOURTH = CharPair("4th","{")
+        val SIXTH = CharPair("6th","5th")
+        val SEVENTH = CharPair("7th","]")
+        val EIGHTH = CharPair("8th",">")
+        val NINTH = CharPair("9th","[")
+
         val Dash = CharPair("-", "_")
         val FStop = CharPair(".", ",")
         val At = CharPair("@", "?")
         val Colons = CharPair(";",":")
         val Space = LockedPair(
-                Invisible(" ", "' '"),
+                Invisible(" ", " "),
                 SpecialKey(KeyEvent.KEYCODE_TAB, "↦")
         )
-        val Quotes = CharPair("'","\"",)
+        val Quotes = CharPair("'","\"")
 
         //Arrows
 
@@ -132,8 +143,8 @@ class KeyLists {
         val Empty = CapLetter("")
 
         //Squares
-        val ZeroPad = arrayOf(_0, _1, _2, _3, _4)
-        val FivePad = arrayOf(_5, _6, _7, _8, _9)
+        val ZeroPad = arrayOf(_0, _1, _2, _3, _4,FIRST,SECOND,THIRD,FOURTH)
+        val FivePad = arrayOf(_5, _6, _7, _8, _9,SIXTH,SEVENTH,EIGHTH,NINTH)
         val RPad = arrayOf(R, G, Q, D, U)
         val EPad = arrayOf(E, Y, O, C, B)
         val APad = arrayOf(A, N, FStop, F, V, Empty,Empty,Empty, CPPaste)
