@@ -32,30 +32,62 @@ class KeyLists {
         val Y = CapLetter("y")
         val Z = CapLetter("z")
 
-        val THA = LongKey("tha")
-        val HER = LongKey("her")
-        val TER = LongKey("ter")
-        val TEN = LongKey("ten")
-        val THE = LongKey("the")
-        val WAS = LongKey("was")
         val AND = LongKey("and")
-        val NOT = LongKey("not")
+        val ANG = LongKey("ang")
+        val ANT = LongKey("ant")
+
+        val ARE = LongKey("are")
+        val BECAUSE = LongKey("because")
+        val CAN = LongKey("can")
+        val DAY = LongKey("day")
         val ENT = LongKey("ent")
+
+        val FAR = LongKey("far")
+        val FOR = LongKey("for")
+        val FROM = LongKey("from")
+        val GET = LongKey("get")
         val HAS = LongKey("has")
         val HAVE = LongKey("have")
-        val FOR = LongKey("for")
+        val HER = LongKey("her")
+        val HIM = LongKey("him")
+        val IGN = LongKey("ign")
         val ION = LongKey("ion")
         val ING = LongKey("ing")
-        val YOU = LongKey("you")
-        val QU = LongKey("qu")
-        val THI = LongKey("thi")
-        val THOU = LongKey("thou")
-        val NT = LongKey("n't")
-        val WERE = LongKey("were")
-        val ANG = LongKey("ang")
         val ITE = LongKey("ite")
         val IGHT = LongKey("ight")
+        val JUST = LongKey("just")
+        val KNOW = LongKey("know")
+        val LIKE = LongKey("like")
+
+        val MAKE = LongKey("make")
+        val NOT = LongKey("not")
+        val NT = LongKey("n't")
+        val OUGH = LongKey("ough")
+
+        val PLEASE = LongKey("please")
+
+        val QU = LongKey("qu")
+        val SORRY = LongKey("sorry")
+        val TER = LongKey("ter")
+        val TEN = LongKey("ten")
+        val THA = LongKey("tha")
+        val THANK = LongKey("thank")
+        val THE = LongKey("the")
+
+        val THI = LongKey("thi")
+        val THOU = LongKey("thou")
+
+        val WAS = LongKey("was")
+        val WERE = LongKey("were")
+        val WITH = LongKey("with")
+
+        val YES= LongKey("yes")
+        val YOU = LongKey("you")
         val YOURE = LongKey("you're")
+
+
+
+
 
         val D_COM = LongKey(".com")
         val D_CO = LongKey(".co")
@@ -100,9 +132,15 @@ class KeyLists {
         val ArrowLeft = oneSpecialKey(KeyEvent.KEYCODE_DPAD_LEFT,"←")
         val ArrowRight = oneSpecialKey(KeyEvent.KEYCODE_DPAD_RIGHT,"→")
         val ArrowCenter = oneSpecialKey(KeyEvent.KEYCODE_DPAD_CENTER,"⊙")
+        val ArrowHome = oneSpecialKey(KeyEvent.KEYCODE_MOVE_HOME,"|<--")
+        val ArrowEnd = oneSpecialKey(KeyEvent.KEYCODE_MOVE_END,"-->|")
+        val PageUp = oneSpecialKey(KeyEvent.KEYCODE_PAGE_UP,"p_up")
+        val PageDown = oneSpecialKey(KeyEvent.KEYCODE_PAGE_DOWN,"p_down")
 
         val LeftRight = LockedPair(ArrowLeft,ArrowRight)
+        val HomeEnd = LockedPair(ArrowHome,ArrowEnd)
         val DownUp = LockedPair(ArrowDown,ArrowUp)
+        val PageUpDown = LockedPair(PageDown,PageUp)
 
 
         val ArrowPad :Array<out KeyPair> = arrayOf(ArrowCenter, ArrowUp, ArrowRight,ArrowDown, ArrowLeft)
@@ -220,15 +258,15 @@ class KeyLists {
         )
 
 
-        val TallT = arrayOf(T,THA,W,Z,THE,THOU, Empty,Empty,THI)
-        val TallH = arrayOf(H,HER,QU,Y,X)
-        val TallE = arrayOf(E,TER,WAS,R,V,TEN,WERE,Empty,CPPaste)
-        val TallA = arrayOf(A,P,L,F,AND)
-        val TallSpace = arrayOf(Space,At,FStop,Quotes, Colons,LeftRight,DownUp)
-        val TallN = arrayOf(N,K,NOT,D,G,Empty,NT)
-        val TallS = arrayOf(S,ENT,M,FOR,HAS,Empty,Empty,Empty,HAVE)
-        val TallO = arrayOf(O,U,B,ION,Q)
-        val TallI = arrayOf(I,C,YOU,ING,J,Empty,YOURE,IGHT)
+        val TallT = arrayOf(T,THA,W,Z,THE,THOU, WITH,THANK,THI)
+        val TallH = arrayOf(H,HER,ITE,Y,X,HIM,IGHT,YES,SORRY)
+        val TallE = arrayOf(E,TER,WAS,R,V,TEN,WERE,ARE,CPPaste)
+        val TallA = arrayOf(A,P,L,F,AND,PLEASE,LIKE,FROM)
+        val TallSpace = arrayOf(Space,At,FStop,Quotes, Colons,LeftRight,DownUp,HomeEnd,PageUpDown)
+        val TallN = arrayOf(N,K,NOT,D,G,KNOW,NT,DAY,GET)
+        val TallS = arrayOf(S,ENT,M,FOR,HAS,ANT,MAKE,FAR,HAVE)
+        val TallO = arrayOf(O,U,B,ION,Q,OUGH,BECAUSE,IGN,QU)
+        val TallI = arrayOf(I,C,YOU,ING,J,CAN,YOURE,ANG,JUST)
         val TallCom = arrayOf(D_COM,D_CO,D_UK,D_ORG,D_GOV)
 
 
