@@ -3,8 +3,10 @@ package com.storyfeet.keysfour
 enum class KeyMode{
         STRING,
         KEY,
-        BACKSPACE,
-        BACKSPACE_MANY,
+        BACKSPACE_1,
+        BACKSPACE_5,
+        BACKSPACE_WORD,
+        BACKSPACE_LINE,
         DELETE,
         DELETE_MANY,
         CTRL,

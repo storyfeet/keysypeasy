@@ -161,9 +161,14 @@ class KeyLists {
                 oneModeKey(KeyMode.SET_VERY_SHIFT, "⇧")
         )
 
+        val BackSpaceMain = LockedPair(
+            oneModeKey(KeyMode.BACKSPACE_1,"↼"),
+            oneModeKey(KeyMode.BACKSPACE_LINE,"↼↼")
+        )
+
         val BackSpace = LockedPair(
-                oneModeKey(KeyMode.BACKSPACE, "↼"),
-                oneModeKey(KeyMode.BACKSPACE_MANY, "↼")
+                oneModeKey(KeyMode.BACKSPACE_WORD, "|↼"),
+                oneModeKey(KeyMode.BACKSPACE_5, "5↼")
         )
 
         val Delete = LockedPair(
@@ -189,7 +194,7 @@ class KeyLists {
         val TPad = arrayOf(T, X, H, J, At)
         val SPad = arrayOf(S, K, M, P, Colons)
         val SpacePad = arrayOf(Space,L,I, Z,W ,LeftRight, DownUp)
-        val EnterPad = arrayOf(Quotes, Dash, Delete, Enter, BackSpace)
+        val EnterPad = arrayOf(BackSpaceMain, Dash, Delete, Enter, BackSpace)
         val GoPad = arrayOf(GoHome, Shift, GoSym, GoSmall, Empty)
 
         @JvmStatic

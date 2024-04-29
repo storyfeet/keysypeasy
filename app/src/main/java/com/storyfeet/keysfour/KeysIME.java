@@ -49,6 +49,18 @@ public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener
         return kp;
     }
 
+    public void backspaceTo(InputConnection ic,String cList){
+        String s = (String) ic.getTextBeforeCursor(30,0);
+        if (s==null) return;
+        for (int i = s.length() -1; i >= 0; i--){
+            if (cList.indexOf(s.charAt(i)) >= 0){
+                ic.deleteSurroundingText(s.length() -i , 0);
+                return;
+            }
+        }
+        ic.deleteSurroundingText(s.length(),0);
+    }
+
     @Override
     public void onSlideKey(KeyResult key) {
         InputConnection ic = getCurrentInputConnection();
@@ -73,11 +85,17 @@ public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener
                 break;
             case DELETE_MANY:
                 ic.deleteSurroundingText(0,5);
-            case BACKSPACE:
+            case BACKSPACE_1:
                 ic.deleteSurroundingText(1, 0);
                 break;
-            case BACKSPACE_MANY:
+            case BACKSPACE_5:
                 ic.deleteSurroundingText(5, 0);
+                break;
+            case BACKSPACE_LINE:
+                backspaceTo(ic,"\n\r");
+                break;
+            case BACKSPACE_WORD:
+                backspaceTo(ic,"\n\r\t ,.?@~%£$-_+=(){}[]<>`'\"");
                 break;
 
             case STRING:

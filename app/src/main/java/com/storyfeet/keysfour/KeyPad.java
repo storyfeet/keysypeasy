@@ -108,6 +108,7 @@ public class KeyPad extends View implements View.OnTouchListener {
                 return true;
             }
         }
+        if (mode == KeyMode.BACKSPACE_1) return true;
         if (mode == KeyMode.SET_PAGE ) return true;
         if (mode == KeyMode.ACCENT ) return true;
         return false;
