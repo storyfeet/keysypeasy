@@ -50,7 +50,7 @@ public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener
     }
 
     public void backspaceTo(InputConnection ic,String cList){
-        String s = (String) ic.getTextBeforeCursor(30,0);
+        String s = (String) ic.getTextBeforeCursor(40,0);
         if (s==null) return;
         for (int i = s.length() -1; i >= 0; i--){
             if (cList.indexOf(s.charAt(i)) >= 0){

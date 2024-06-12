@@ -281,12 +281,18 @@ class KeyLists {
             FivePad,TallS,TallO,TallI,GoPad,
         )
 
+        val EN_TALL_LANDSCAPE = arrayOf(
+            EmptyPad, EmptyPad,EmptyPad, AccentPad, ZeroPad,TallT,TallH,TallE, TallA,EnterPad,
+            EmptyPad, EmptyPad,EmptyPad, TallCom, TallN, TallS,TallSpace, TallO, TallI, GoPad,
+
+        )
+
 
 
         fun pageByName(name: String,landscape:Boolean): Array<Array<out KeyPair>> {
             if (name == "symbol") return if (landscape) symbol_landscape else symbol_portrait;
             if (name == "english") return if (landscape) english_landscape else english_portrait;
-            return EN_TALL_PORTRAIT;
+            return  if(landscape) EN_TALL_LANDSCAPE else EN_TALL_PORTRAIT;
 
         }
 
