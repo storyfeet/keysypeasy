@@ -28,10 +28,15 @@ public class TouchTracker {
     // Went in that direction, and then turned
     // turning left or down is lower case, 
     // turning right or up is capital
-    public final static int ROUND_UP = 5;
-    public final static int ROUND_RIGHT = 6;
-    public final static int ROUND_DOWN = 7;
-    public final static int ROUND_LEFT = 8;
+    public final static int ROUND_UL = 5;
+    public final static int ROUND_UR = 6;
+    public final static int ROUND_RU = 7;
+    public final static int ROUND_RD = 8;
+    public final static int ROUND_DR = 9;
+    public final static int ROUND_DL = 10;
+
+    public final static int ROUND_LD = 11;
+    public final static int ROUND_LU = 12;
 
 
     // This is the result of a touch action.
@@ -169,7 +174,7 @@ public class TouchTracker {
         if (numHits >= 4) return dc(DIR_NONE,true);
 
         // drop direction 3 
-        // by masking against 111111
+        // by masking against 000111111
         int hd = hitDirections & 63;
 
         // If the first three bits are DIR_DOWN, and the second three are DIR_UP, then we have gone UP then DOWN. That is a Capital UP
@@ -179,20 +184,21 @@ public class TouchTracker {
         if (hd == (DIR_LEFT | (DIR_RIGHT << 3))) return dc(DIR_LEFT,true);
         if (hd == (DIR_RIGHT | (DIR_LEFT << 3))) return dc(DIR_RIGHT,true);
 
+        boolean cap3 = numHits == 3;
         // On 3 we gotta check directions
         // UP RIGHT is TRUE, down left is false
         // LEFT then UP is capital, LEFT then DOWN is lower case
-        if (hd == (DIR_LEFT | (DIR_UP << 3 ))) return dc(ROUND_LEFT,true);
-        if (hd == (DIR_LEFT | (DIR_DOWN << 3))) return dc(ROUND_LEFT,false);
+        if (hd == (DIR_LEFT | (DIR_UP << 3 ))) return dc(ROUND_LU,cap3);
+        if (hd == (DIR_LEFT | (DIR_DOWN << 3))) return dc(ROUND_LD,cap3);
 
-        if (hd == (DIR_RIGHT | (DIR_UP << 3 ))) return dc(ROUND_RIGHT,true);
-        if (hd == (DIR_RIGHT | (DIR_DOWN << 3))) return dc(ROUND_RIGHT,false);
+        if (hd == (DIR_RIGHT | (DIR_UP << 3 ))) return dc(ROUND_RU,cap3);
+        if (hd == (DIR_RIGHT | (DIR_DOWN << 3))) return dc(ROUND_RD,cap3);
 
-        if (hd == (DIR_UP | (DIR_RIGHT << 3 ))) return dc(ROUND_UP,true);
-        if (hd == (DIR_UP | (DIR_LEFT << 3))) return dc(ROUND_UP,false);
+        if (hd == (DIR_UP | (DIR_RIGHT << 3 ))) return dc(ROUND_UR,cap3);
+        if (hd == (DIR_UP | (DIR_LEFT << 3))) return dc(ROUND_UL,cap3);
 
-        if (hd == (DIR_DOWN | (DIR_RIGHT << 3 ))) return dc(ROUND_DOWN,true);
-        if (hd == (DIR_DOWN | (DIR_LEFT << 3))) return dc(ROUND_DOWN,false);
+        if (hd == (DIR_DOWN | (DIR_RIGHT << 3 ))) return dc(ROUND_DR,cap3);
+        if (hd == (DIR_DOWN | (DIR_LEFT << 3))) return dc(ROUND_DL,cap3);
 
         // No other combination makes sense.
         return null;
