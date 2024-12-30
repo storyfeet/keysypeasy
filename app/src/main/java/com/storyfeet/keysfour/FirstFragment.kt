@@ -45,6 +45,7 @@ class FirstFragment : Fragment() {
 
         binding.buttonEnable.setOnClickListener{
             val imeIntent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS);
+            imeIntent.putExtra(Settings.EXTRA_INPUT_METHOD_ID,"com.storyfeet.keyseypeasy.KeyseyPeasy")
             startActivity(imeIntent);
         }
 

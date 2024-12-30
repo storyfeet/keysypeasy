@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.storyfeet.keysfour"
+        applicationId = "com.storyfeet.keyseypeasy"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

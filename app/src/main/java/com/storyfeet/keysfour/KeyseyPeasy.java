@@ -7,20 +7,16 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
 
-import com.storyfeet.keysfour.KeyMode;
-import com.storyfeet.keysfour.KeyPad;
-import com.storyfeet.keysfour.KeyResult;
-
 import java.util.TimerTask;
 import java.util.Timer;
 
-public class KeysIME extends InputMethodService implements KeyPad.KeyPadListener {
+public class KeyseyPeasy extends InputMethodService implements KeyPad.KeyPadListener {
 
     private KeyPad.KPData kpd = null;
     private Timer timer = null;
     private KeyTimerTask timertask = null;
 
-    public KeysIME(){
+    public KeyseyPeasy(){
         super();
 
         Log.d("MATT", "new KeysIME");
