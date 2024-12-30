@@ -201,7 +201,10 @@ class KeyLists {
         val GoSmall = goKey("english", "SML")
 
 
+        //TODO Add methods to make this useable
+        val Unicoder = oneModeKey (KeyMode.UNICODE,"*U*")
 
+        val CapRotater = oneModeKey(KeyMode.ROTATE_CAPS,"cC")
 
 
         val Shift = LockedPair(

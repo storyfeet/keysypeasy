@@ -17,6 +17,8 @@ enum class KeyMode{
         SET_PAGE,
         SET_SHIFT,
         SET_VERY_SHIFT,
+        ROTATE_CAPS,
+        UNICODE,
 
 }
 
