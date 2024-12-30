@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import androidx.navigation.fragment.findNavController
 import com.storyfeet.keysfour.databinding.FragmentFirstBinding
 
@@ -35,6 +36,9 @@ class FirstFragment : Fragment() {
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+        val introView: WebView = view.findViewById<WebView>(R.id.web_intro)
+        introView.loadUrl("file:///android_asset/intro.html")
+
     }
 
     override fun onDestroyView() {
