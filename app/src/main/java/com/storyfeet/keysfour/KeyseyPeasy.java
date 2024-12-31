@@ -76,6 +76,13 @@ public class KeyseyPeasy extends InputMethodService implements KeyPad.KeyPadList
                 ic.deleteSurroundingText(1,0);
                 ic.commitText(res,1);
                 break;
+            case UNICODE:
+                String su = (String) ic.getTextBeforeCursor(5,0);
+                if (su == null) return;
+                if (su.length() == 0) return;
+                String resu = BackConvertKt.ConvertUnicode(su);
+                ic.deleteSurroundingText(5,0);
+                ic.commitText(resu,1);
             case DELETE:
                 ic.deleteSurroundingText(0,1);
                 break;

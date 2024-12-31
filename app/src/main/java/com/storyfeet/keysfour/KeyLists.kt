@@ -202,7 +202,7 @@ class KeyLists {
 
 
         //TODO Add methods to make this useable
-        val Unicoder = oneModeKey (KeyMode.UNICODE,"*U*")
+        val Unicoder = oneModeKey (KeyMode.UNICODE,"*U")
 
         val CapRotater = oneModeKey(KeyMode.ROTATE_CAPS,"cC")
 
@@ -292,13 +292,12 @@ class KeyLists {
             CharPair("¥","₡"),
         )
 
-        val AccentPad = arrayOf(
+        val AccentPad : Array<out KeyPair> = arrayOf(
             accentPair("ã","ä"),
             accentPair("à","à"),
             accentPair("á","á"),
-            accentPair("ç","ç"),
-            accentPair("â","â"),
-
+            accentPair("ç","â"),
+            LockedPair(Unicoder,OneLetter("#")),
         )
 
         val EmptyPad:Array<out KeyPair> = arrayOf()
