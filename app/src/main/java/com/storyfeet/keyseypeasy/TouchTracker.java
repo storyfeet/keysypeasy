@@ -1,4 +1,4 @@
-package com.storyfeet.keysfour;
+package com.storyfeet.keyseypeasy;
 
 /**
  * The touch tracker recieves a list of mouse positions, from movement events, and builds up a picture of the kind of movement the user has done,

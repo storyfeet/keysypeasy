@@ -1,4 +1,4 @@
-package com.storyfeet.keysfour
+package com.storyfeet.keyseypeasy
 
 import android.content.Context
 import android.graphics.Paint

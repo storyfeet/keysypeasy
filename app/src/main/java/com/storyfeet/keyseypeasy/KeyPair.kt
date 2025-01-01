@@ -1,4 +1,4 @@
-package com.storyfeet.keysfour
+package com.storyfeet.keyseypeasy
 
 interface KeyPair {
     fun preview(ss:Int): String;

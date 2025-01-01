@@ -1,6 +1,6 @@
-package com.storyfeet.keysfour;
+package com.storyfeet.keyseypeasy;
 
-import static com.storyfeet.keysfour.R.*;
+import static com.storyfeet.keyseypeasy.R.*;
 
 import android.content.Context;
 import android.content.res.Configuration;

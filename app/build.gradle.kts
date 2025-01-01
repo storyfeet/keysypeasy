@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.storyfeet.keysfour"
+    namespace = "com.storyfeet.keyseypeasy"
     compileSdk = 34
 
     defaultConfig {

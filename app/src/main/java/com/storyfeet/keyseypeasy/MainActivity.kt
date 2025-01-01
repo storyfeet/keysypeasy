@@ -1,4 +1,4 @@
-package com.storyfeet.keysfour
+package com.storyfeet.keyseypeasy
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.storyfeet.keysfour.databinding.ActivityMainBinding
+import com.storyfeet.keyseypeasy.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

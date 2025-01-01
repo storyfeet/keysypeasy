@@ -1,4 +1,4 @@
-package com.storyfeet.keysfour
+package com.storyfeet.keyseypeasy
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.storyfeet.keysfour.databinding.FragmentFirstBinding
+import com.storyfeet.keyseypeasy.databinding.FragmentFirstBinding
 
 
 /**
@@ -45,7 +45,11 @@ class FirstFragment : Fragment() {
 
         binding.buttonEnable.setOnClickListener{
             val imeIntent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS);
-            imeIntent.putExtra(Settings.EXTRA_INPUT_METHOD_ID,"com.storyfeet.keyseypeasy.KeyseyPeasy")
+
+
+            imeIntent.putExtra(Settings.EXTRA_INPUT_METHOD_ID,"com.storyfeet.keyseypeasy/.KeyseyPeasy")
+            imeIntent.putExtra(Intent.EXTRA_TITLE, "Select Enabled Subtypes");
+
             startActivity(imeIntent);
         }
 

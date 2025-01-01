@@ -1,6 +1,4 @@
-package com.storyfeet.keysfour;
-
-import android.view.KeyEvent;
+package com.storyfeet.keyseypeasy;
 
 public class KeyListOld {
 

@@ -1,4 +1,4 @@
-package com.storyfeet.keysfour;
+package com.storyfeet.keyseypeasy;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.inputmethodservice.InputMethodService;
