@@ -57,6 +57,11 @@ public class TouchTracker {
         return new DirCap(dir, cap);
     }
 
+    //If two dirs, return capitalise side, if three, capitalize centre
+    private DirCap dcZero(int dir, boolean zero) {
+        if (zero) return new DirCap(DIR_NONE,true);
+        return new DirCap(dir,true);
+    }
     // The list of directions the cursor has moved. Stored as a single number
     private int hitDirections = 0;
     // How many times has the cursor changed direction
@@ -176,15 +181,15 @@ public class TouchTracker {
         // drop direction 3 
         // by masking against 000111111
         int hd = hitDirections & 63;
+        boolean cap3 = numHits == 3;
 
         // If the first three bits are DIR_DOWN, and the second three are DIR_UP, then we have gone UP then DOWN. That is a Capital UP
         // and so-on through the group
-        if (hd == (DIR_UP | (DIR_DOWN << 3))) return dc(DIR_UP,true);
-        if (hd == (DIR_DOWN | (DIR_UP << 3))) return dc(DIR_DOWN,true);
-        if (hd == (DIR_LEFT | (DIR_RIGHT << 3))) return dc(DIR_LEFT,true);
-        if (hd == (DIR_RIGHT | (DIR_LEFT << 3))) return dc(DIR_RIGHT,true);
+        if (hd == (DIR_UP | (DIR_DOWN << 3))) return dcZero(DIR_UP,cap3);
+        if (hd == (DIR_DOWN | (DIR_UP << 3))) return dcZero(DIR_DOWN,cap3);
+        if (hd == (DIR_LEFT | (DIR_RIGHT << 3))) return dcZero(DIR_LEFT,cap3);
+        if (hd == (DIR_RIGHT | (DIR_LEFT << 3))) return dcZero(DIR_RIGHT,cap3);
 
-        boolean cap3 = numHits == 3;
         // On 3 we gotta check directions
         // UP RIGHT is TRUE, down left is false
         // LEFT then UP is capital, LEFT then DOWN is lower case
