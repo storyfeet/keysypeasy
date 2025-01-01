@@ -1,7 +1,5 @@
 package com.storyfeet.keyseypeasy;
 
-import static com.storyfeet.keyseypeasy.R.*;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.view.MotionEvent;
@@ -266,7 +264,7 @@ public class KeyPad extends View implements View.OnTouchListener {
                 if (this.prepString == null){
                     this.prepString = "";
                 }else {
-                    String pps = BackConvertKt.ConvertUnicode(this.prepString);
+                    String pps = PrepareConvertKt.convert(this.prepString);
                     this.kpListener.onSlideKey(new OneLetter(pps));
                     this.prepString = null;
                 }
