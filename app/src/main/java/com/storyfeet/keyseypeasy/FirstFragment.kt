@@ -1,9 +1,11 @@
 package com.storyfeet.keyseypeasy
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,12 +45,15 @@ class FirstFragment : Fragment() {
         }
         binding.webIntro.loadUrl("file:///android_asset/intro.html")
 
+
         binding.buttonEnable.setOnClickListener{
             val imeIntent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS);
 
 
-            imeIntent.putExtra(Settings.EXTRA_INPUT_METHOD_ID,"com.storyfeet.keyseypeasy/.KeyseyPeasy")
-            imeIntent.putExtra(Intent.EXTRA_TITLE, "Select Enabled Subtypes");
+            val kpID = context?.let {
+                it1 -> ComponentName(it1,KeyseyPeasy::class.java).flattenToShortString()
+            }?: "NO-ID"
+            imeIntent.putExtra(Settings.EXTRA_INPUT_METHOD_ID,kpID)
 
             startActivity(imeIntent);
         }
@@ -56,11 +61,8 @@ class FirstFragment : Fragment() {
         binding.buttonSelectIme.setOnClickListener{
             val imeManager =
                 requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            if (imeManager != null) {
-                imeManager.showInputMethodPicker()
-            } else {
-                Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
-            }
+
+            imeManager.showInputMethodPicker()
         }
     }
 

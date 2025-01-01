@@ -164,7 +164,7 @@ public class KeyPad extends View implements View.OnTouchListener {
                 float downY = event.getY();
                 this.chosenSquare = getSquare(downX,downY);
                 isPressed = 1;
-                this.touchTracker = new TouchTracker(this.isLandscape ? chosenWidth / 50.0f : chosenWidth / 25.0f , downX,downY);
+                this.touchTracker = new TouchTracker(this.isLandscape ? chosenWidth / 30.0f : chosenWidth / 15.0f , downX,downY);
                 Log.d("MATT","touch_down : x = "+ downX + ", y = " + downY);
                 break;
             case MotionEvent.ACTION_MOVE:
