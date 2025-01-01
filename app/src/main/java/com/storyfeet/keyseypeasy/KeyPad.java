@@ -14,10 +14,13 @@ import androidx.annotation.NonNull;
 
 public class KeyPad extends View implements View.OnTouchListener {
 
+    String prepString;
     public static class KPData{
         String chosen;
+
         private KPData(String chosen){
             this.chosen = chosen;
+
 
         }
         @NonNull
@@ -60,6 +63,8 @@ public class KeyPad extends View implements View.OnTouchListener {
         this.colorSet = new ColorSet(context);
         Log.d("MATT", "new Keypad");
 
+
+        this.prepString = null;
 
         chosenHeight = 2;
         chosenWidth = 2;
@@ -152,6 +157,16 @@ public class KeyPad extends View implements View.OnTouchListener {
                 }
             }
         }
+        if (this.prepString != null){
+
+            Paint pt = colorSet.pTxSpecMain;
+            float tw = (this.prepString.length()+2)* rw/7;
+            canvas.drawRect(chosenWidth/2.f - tw, rh/2.5f,chosenWidth/2.f+tw,rh*1.15f,pt  );
+
+            pt = colorSet.pTxMain;
+            pt.setTextSize(rw/2);
+            canvas.drawText(this.prepString,chosenWidth/2.f,rh,pt);
+        }
 
     }
 
@@ -193,7 +208,25 @@ public class KeyPad extends View implements View.OnTouchListener {
         return true;
     }
 
+    private void keyPrepared(KeyResult key){
+        switch (key.getMode()){
+            case UNPREPARE:
+                this.prepString = null;
+                break;
+            case STRING:
+                this.prepString += key.getStr();
+                break;
+            default:
+                this.prepString = null;
+                break;
+        }
+        invalidate();
+
+    }
+
+
     public void processKey(){
+
         TouchTracker.DirCap dc = touchTracker.getDirCap();
         if (dc == null){
             return;
@@ -229,7 +262,22 @@ public class KeyPad extends View implements View.OnTouchListener {
                 invalidate();
                 requestLayout();
                 break;
+            case PREPARE:
+                if (this.prepString == null){
+                    this.prepString = "";
+                }else {
+                    String pps = BackConvertKt.ConvertUnicode(this.prepString);
+                    this.kpListener.onSlideKey(new OneLetter(pps));
+                    this.prepString = null;
+                }
+                invalidate();
+                break;
+
             default:
+                if (this.prepString !=null){
+                    keyPrepared(key);
+                    return;
+                }
                 this.kpListener.onSlideKey(key);
                 break;
         }
